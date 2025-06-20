@@ -20,6 +20,33 @@
         .code-string { color: #A3E635; }
         .code-placeholder { color: #FBBF24; font-weight: bold; }
         .highlight-code { background-color: #334155; display: block; margin: 0 -1.5rem; padding: 0 1.5rem; border-left: 4px solid #60A5FA; }
+        .tab-button {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #334155; /* slate-700 */
+            background-color: white;
+            border: 1px solid #cbd5e1; /* slate-300 */
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .tab-button:not(.active):hover {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        .tab-button.active {
+            background-color: #3b82f6; /* blue-600 */
+            color: white;
+            border-color: #3b82f6; /* blue-600 */
+        }
+        .tab-button:first-child {
+            border-top-left-radius: 0.375rem;
+            border-bottom-left-radius: 0.375rem;
+        }
+        .tab-button:last-child {
+            border-top-right-radius: 0.375rem;
+            border-bottom-right-radius: 0.375rem;
+            border-left-width: 0;
+        }
         #glossary-modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 99; display: none; }
         #glossary-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 500px; z-index: 100; display: none; }
     </style>
@@ -266,9 +293,13 @@
                              <button id="bark-btn" class="bg-blue-700 text-white font-bold px-5 py-2 rounded-md hover:bg-blue-800 transition-colors">เห่าเลย!</button>
                         </div>
 
-                        <div id="loop-toggle-btns" class="mb-4">
-                            <button id="show-for-loop" class="playground-toggle-btn active">แสดงโค้ด for</button>
-                            <button id="show-while-loop" class="playground-toggle-btn">แสดงโค้ด while</button>
+                        <div id="loop-toggle-btns" class="inline-flex shadow-sm" role="group">
+                            <button id="show-for-loop" type="button" class="tab-button active">
+                              for
+                            </button>
+                            <button id="show-while-loop" type="button" class="tab-button">
+                              while
+                            </button>
                         </div>
                         
                         <div class="grid md:grid-cols-2 gap-4">
