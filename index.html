@@ -12,13 +12,14 @@
         body { font-family: 'Sarabun', sans-serif; font-weight: 400; }
         h1, h2, h3, h4, h5, h6 { font-weight: 600; }
         .content-card { background-color: white; border-radius: 0.75rem; box-shadow: 0 4px_6px_-1px_rgb(0_0_0_/_0.1),_0_2px_4px_-2px_rgb(0_0_0_/_0.1); padding: 2rem; margin-bottom: 2rem; }
-        .code-block { background-color: #1E293B; color: #E2E8F0; padding: 1.5rem; border-radius: 0.5rem; font-family: 'Courier New', Courier, monospace; font-size: 0.95em; white-space: pre; /* Changed to pre for preserving spaces */ word-break: break-all; line-height: 1.6; }
+        .code-block { background-color: #1E293B; color: #E2E8F0; padding: 1.5rem; border-radius: 0.5rem; font-family: 'Courier New', Courier, monospace; font-size: 0.95em; white-space: pre; word-break: break-all; line-height: 1.6; }
         .code-keyword, .keyword-glossary { color: #60A5FA; font-weight: bold; }
         .keyword-glossary { border-bottom: 1px dotted #60A5FA; cursor: pointer; white-space: normal; }
         .code-function { color: #A78BFA; }
         .code-comment { color: #64748B; font-style: italic;}
         .code-string { color: #A3E635; }
         .code-placeholder { color: #FBBF24; font-weight: bold; }
+        .highlight-code { background-color: #334155; display: block; margin: 0 -1.5rem; padding: 0 1.5rem; border-left: 4px solid #60A5FA; }
         #glossary-modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 99; display: none; }
         #glossary-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 500px; z-index: 100; display: none; }
     </style>
@@ -164,17 +165,11 @@
             <section id="c-conditionals" class="scroll-mt-16">
                 <div class="content-card">
                     <h2 class="text-3xl font-bold text-slate-900 mb-4">บทที่ 5: โปรแกรมผู้มีวิจารณญาณ (Conditionals)</h2>
-                    <p class="text-slate-600 mb-4 leading-relaxed">
-                        ถึงตอนนี้ โปรแกรมของเราทำงานเป็นเส้นตรงตั้งแต่ต้นจนจบ แต่ในโลกแห่งความเป็นจริง เราต้องตัดสินใจอยู่ตลอดเวลา "ถ้าฝนตก ให้กางร่ม แต่ถ้าไม่ ก็ไม่ต้อง" โปรแกรมคอมพิวเตอร์ก็เช่นกันครับ ในบทนี้ เราจะมาสอนให้โปรแกรมของเรามี "ทางแยก" และเลือกเดินไปในเส้นทางที่ถูกต้องได้
-                    </p>
+                    <p class="text-slate-600 mb-4 leading-relaxed">ถึงตอนนี้ โปรแกรมของเราทำงานเป็นเส้นตรงตั้งแต่ต้นจนจบ แต่ในโลกแห่งความเป็นจริง เราต้องตัดสินใจอยู่ตลอดเวลา "ถ้าฝนตก ให้กางร่ม แต่ถ้าไม่ ก็ไม่ต้อง" โปรแกรมคอมพิวเตอร์ก็เช่นกันครับ ในบทนี้ เราจะมาสอนให้โปรแกรมของเรามี "ทางแยก" และเลือกเดินไปในเส้นทางที่ถูกต้องได้</p>
                     <h3 class="text-xl font-semibold mt-8 mb-3">คำถามประเภท ใช่/ไม่ใช่ (Boolean Expressions)</h3>
-                     <p class="text-slate-600 mb-4 leading-relaxed">
-                        หัวใจของการตัดสินใจคือการตั้ง "คำถาม" ที่มีคำตอบแค่ "จริง" (True) หรือ "เท็จ" (False) เท่านั้น ในทางคอมพิวเตอร์ เราเรียกตรรกะแบบนี้ว่า <strong class="keyword-glossary" data-term="Boolean" data-def="ตรรกะแบบบูลีน คือระบบคิดที่มีผลลัพธ์เพียง 2 อย่างคือ จริง (true) หรือ เท็จ (false) เป็นพื้นฐานของการตัดสินใจทั้งหมดในคอมพิวเตอร์">Boolean</strong> ครับ เช่น คำถาม "5 มากกว่า 3 หรือไม่?" คำตอบคือ "จริง" ส่วนคำถาม "10 เท่ากับ 1 หรือไม่?" คำตอบคือ "เท็จ"
-                    </p>
+                     <p class="text-slate-600 mb-4 leading-relaxed">หัวใจของการตัดสินใจคือการตั้ง "คำถาม" ที่มีคำตอบแค่ "จริง" (True) หรือ "เท็จ" (False) เท่านั้น ในทางคอมพิวเตอร์ เราเรียกตรรกะแบบนี้ว่า <strong class="keyword-glossary" data-term="Boolean" data-def="ตรรกะแบบบูลีน คือระบบคิดที่มีผลลัพธ์เพียง 2 อย่างคือ จริง (true) หรือ เท็จ (false) เป็นพื้นฐานของการตัดสินใจทั้งหมดในคอมพิวเตอร์">Boolean</strong> ครับ เช่น คำถาม "5 มากกว่า 3 หรือไม่?" คำตอบคือ "จริง" ส่วนคำถาม "10 เท่ากับ 1 หรือไม่?" คำตอบคือ "เท็จ"</p>
                     <h3 class="text-xl font-semibold mt-8 mb-3">เครื่องมือสำหรับเปรียบเทียบ (Comparison Operators)</h3>
-                    <p class="text-slate-600 mb-4">
-                        เพื่อสร้างคำถามแบบ Boolean ในภาษา C เราจะใช้เครื่องหมายเหล่านี้ในการเปรียบเทียบค่าสองข้างครับ
-                    </p>
+                    <p class="text-slate-600 mb-4">เพื่อสร้างคำถามแบบ Boolean ในภาษา C เราจะใช้เครื่องหมายเหล่านี้ในการเปรียบเทียบค่าสองข้างครับ</p>
                     <ul class="space-y-2 mb-4 list-disc list-inside">
                         <li>`>` : มากกว่า</li>
                         <li>`<` : น้อยกว่า</li>
@@ -188,35 +183,28 @@
                         <p class="text-amber-700">`=` (ตัวเดียว) คือการ **กำหนดค่า** (Assignment) เช่น `x = 5;` คือ "เอา 5 ไปใส่ในกล่อง x"</p>
                         <p class="text-amber-700">`==` (สองตัว) คือการ **เปรียบเทียบ** (Comparison) เช่น `x == 5;` คือ "ถามว่าค่าในกล่อง x เท่ากับ 5 หรือไม่?"</p>
                     </div>
-
                     <h3 class="text-xl font-semibold mt-8 mb-3">สร้างทางแยกด้วย `if-else`</h3>
-                    <p class="text-slate-600 mb-4">
-                        นี่คือโปรแกรมที่จะรับเลขมา 2 ตัว แล้วเปรียบเทียบกันโดยใช้โครงสร้าง <strong class="keyword-glossary" data-term="if-else" data-def="ชุดคำสั่งที่ใช้สร้างเงื่อนไข ถ้าเงื่อนไขใน if เป็นจริง จะทำคำสั่งในบล็อกของ if แต่ถ้าเป็นเท็จ จะไปตรวจสอบเงื่อนไขถัดไป (else if) หรือทำคำสั่งในบล็อกของ else แทน">`if-else`</strong> ครับ
-                    </p>
-                    <pre class="code-block"><code class="language-c"><span class="code-comment">// นำเข้าไลบรารีที่จำเป็น</span>
-<span class="keyword-glossary" data-term="#include" data-def="คำสั่ง 'พรีโปรเซสเซอร์' ใช้บอกคอมไพเลอร์ว่า 'ช่วยไปเอาโค้ดจากไฟล์อื่นมารวมกับไฟล์นี้ที'">#include</span> <span class="code-string">&lt;<span class="keyword-glossary" data-term="cs50.h" data-def="ไลบรารีพิเศษของ CS50 ที่มีฟังก์ชันอำนวยความสะดวก">cs50.h</span>&gt;</span>
-<span class="keyword-glossary" data-term="#include" data-def="คำสั่ง 'พรีโปรเซสเซอร์' ใช้บอกคอมไพเลอร์ว่า 'ช่วยไปเอาโค้ดจากไฟล์อื่นมารวมกับไฟล์นี้ที'">#include</span> <span class="code-string">&lt;<span class="keyword-glossary" data-term="stdio.h" data-def="ไลบรารีมาตรฐานสำหรับ Input/Output">stdio.h</span>&gt;</span>
+                    <p class="text-slate-600 mb-4">นี่คือโปรแกรมที่จะรับเลขมา 2 ตัว แล้วเปรียบเทียบกันโดยใช้โครงสร้าง <strong class="keyword-glossary" data-term="if-else" data-def="ชุดคำสั่งที่ใช้สร้างเงื่อนไข ถ้าเงื่อนไขใน if เป็นจริง จะทำคำสั่งในบล็อกของ if แต่ถ้าเป็นเท็จ จะไปตรวจสอบเงื่อนไขถัดไป (else if) หรือทำคำสั่งในบล็อกของ else แทน">`if-else`</strong> ครับ</p>
+                    <pre class="code-block"><code class="language-c"></code></pre>
 
-<span class="keyword-glossary" data-term="int" data-def="ชนิดข้อมูลเลขจำนวนเต็ม">int</span> <span class="keyword-glossary code-function" data-term="main" data-def="ฟังก์ชันหลัก จุดเริ่มต้นของโปรแกรม">main</span>(<span class="keyword-glossary" data-term="void" data-def="หมายความว่าฟังก์ชันนี้ไม่รับค่าใดๆ">void</span>)
-<span class="keyword-glossary" data-term="{ }">{</span>
-    <span class="code-comment">// รับค่า x และ y จากผู้ใช้</span>
-    <span class="keyword-glossary" data-term="int" data-def="ชนิดข้อมูลเลขจำนวนเต็ม">int</span> x = <span class="keyword-glossary code-function" data-term="get_int" data-def="ฟังก์ชันรับเลขจำนวนเต็มจากผู้ใช้">get_int</span>(<span class="code-string">"What's x? "</span>);
-    <span class="keyword-glossary" data-term="int" data-def="ชนิดข้อมูลเลขจำนวนเต็ม">int</span> y = <span class="keyword-glossary code-function" data-term="get_int" data-def="ฟังก์ชันรับเลขจำนวนเต็มจากผู้ใช้">get_int</span>(<span class="code-string">"What's y? "</span>);
+                    <div id="playground" class="bg-sky-50 border border-sky-200 p-6 rounded-lg my-8">
+                        <h3 class="text-2xl font-bold text-sky-800 mb-4">ห้องทดลองการตัดสินใจ: ซื้อตั๋วหนัง</h3>
+                        <p class="text-slate-600 mb-4">ลองป้อนอายุของคุณ แล้วดูสิว่าโปรแกรมจะตัดสินใจเลือกเส้นทางไหนให้คุณ!</p>
+                        <div class="flex items-center space-x-3 mb-4">
+                             <label for="age-input" class="text-slate-700 font-semibold">กรุณาใส่อายุของคุณ:</label>
+                             <input type="number" id="age-input" class="w-24 border border-slate-300 rounded-md px-3 py-2 text-center" placeholder="เช่น 20">
+                             <button id="check-age-btn" class="bg-sky-600 text-white font-bold px-5 py-2 rounded-md hover:bg-sky-700 transition-colors">ตรวจสอบ</button>
+                        </div>
+                        
+                        <div id="playground-result" class="mt-4 p-4 rounded-md bg-white border border-slate-200 hidden">
+                            <p id="result-text" class="text-lg font-semibold text-center"></p>
+                        </div>
 
-    <span class="code-comment">// เริ่มการตัดสินใจ</span>
-    <span class="keyword-glossary" data-term="if" data-def="คำสั่งเริ่มต้นเงื่อนไข 'ถ้า...' เพื่อตรวจสอบว่าสิ่งที่อยู่ในวงเล็บเป็นจริงหรือไม่">if</span> (x < y)
-    <span class="keyword-glossary" data-term="{ }">{</span>
-        <span class="keyword-glossary code-function" data-term="printf" data-def="ฟังก์ชันแสดงผลข้อความ">printf</span>(<span class="code-string">"x is less than y\n"</span>);
-    <span class="keyword-glossary" data-term="{ }">}</span>
-    <span class="keyword-glossary" data-term="else if" data-def="คำสั่งเงื่อนไข '...หรือถ้า...' เป็นทางเลือกที่สอง ถ้าเงื่อนไข if แรกไม่เป็นจริง">else if</span> (x > y)
-    <span class="keyword-glossary" data-term="{ }">{</span>
-        <span class="keyword-glossary code-function" data-term="printf" data-def="ฟังก์ชันแสดงผลข้อความ">printf</span>(<span class="code-string">"x is greater than y\n"</span>);
-    <span class="keyword-glossary" data-term="{ }">}</span>
-    <span class="keyword-glossary" data-term="else" data-def="คำสั่งที่จะทำงาน 'ในกรณีอื่นๆ' ที่เงื่อนไข if และ else if ข้างบนไม่เป็นจริงเลย">else</span>
-    <span class="keyword-glossary" data-term="{ }">{</span>
-        <span class="keyword-glossary code-function" data-term="printf" data-def="ฟังก์ชันแสดงผลข้อความ">printf</span>(<span class="code-string">"x is equal to y\n"</span>);
-    <span class="keyword-glossary" data-term="{ }">}</span>
-<span class="keyword-glossary" data-term="{ }">}</span></code></pre>
+                        <div id="code-reveal-container" class="mt-4 hidden">
+                            <h4 class="text-lg font-semibold text-slate-800 mb-2">เบื้องหลังการทำงาน (โค้ด C ที่ถูกเรียกใช้):</h4>
+                            <pre id="code-reveal" class="code-block"></pre>
+                        </div>
+                    </div>
                      <p class="mt-6 text-center text-lg text-slate-700 font-medium">สุดยอด! ตอนนี้โปรแกรมของคุณไม่ได้เป็นแค่เครื่องคิดเลขที่ซื่อบื้ออีกต่อไป แต่มันสามารถวิเคราะห์และให้คำตอบที่แตกต่างกันตามสถานการณ์ได้แล้ว</p>
                 </div>
             </section>
@@ -233,11 +221,12 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    // ... Existing glossary modal logic ...
     const glossaryModal = document.getElementById('glossary-modal');
     const glossaryBackdrop = document.getElementById('glossary-modal-backdrop');
     document.body.addEventListener('click', function(event) {
         if (event.target.classList.contains('keyword-glossary')) {
-            event.preventDefault(); // Prevent default browser action
+            event.preventDefault();
             const term = event.target.dataset.term;
             const def = event.target.dataset.def;
             document.getElementById('glossary-term').textContent = term;
@@ -252,6 +241,68 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     document.getElementById('glossary-close-btn').addEventListener('click', closeModal);
     glossaryBackdrop.addEventListener('click', closeModal);
+
+
+    // --- NEW: Conditional Playground Logic ---
+    const ageInput = document.getElementById('age-input');
+    const checkAgeBtn = document.getElementById('check-age-btn');
+    const playgroundResult = document.getElementById('playground-result');
+    const resultText = document.getElementById('result-text');
+    const codeRevealContainer = document.getElementById('code-reveal-container');
+    const codeReveal = document.getElementById('code-reveal');
+
+    checkAgeBtn.addEventListener('click', function() {
+        const age = parseInt(ageInput.value);
+
+        // Hide previous results
+        playgroundResult.classList.add('hidden');
+        codeRevealContainer.classList.add('hidden');
+
+        if (isNaN(age) || age <= 0) {
+            resultText.textContent = "กรุณาป้อนอายุที่ถูกต้องเป็นตัวเลขครับ";
+            resultText.className = "text-lg font-semibold text-center text-red-600";
+            playgroundResult.classList.remove('hidden');
+            return;
+        }
+
+        let decisionText = '';
+        let highlightPath = '';
+
+        if (age >= 18) {
+            decisionText = 'คุณสามารถซื้อตั๋วหนังได้ทุกเรื่อง (G, PG-13, R)';
+            highlightPath = 'r-rated';
+        } else if (age >= 13) {
+            decisionText = 'คุณสามารถซื้อตั๋วหนังเรื่อง G และ PG-13 ได้';
+            highlightPath = 'pg13-rated';
+        } else {
+            decisionText = 'คุณสามารถซื้อตั๋วหนังเรื่อง G ได้เท่านั้น';
+            highlightPath = 'g-rated';
+        }
+
+        // Display decision
+        resultText.textContent = decisionText;
+        resultText.className = "text-lg font-semibold text-center text-sky-800";
+        playgroundResult.classList.remove('hidden');
+
+        // Display and highlight code
+        const codeHTML = generateCodeHTML(age, highlightPath);
+        codeReveal.innerHTML = codeHTML;
+        codeRevealContainer.classList.remove('hidden');
+    });
+
+    function generateCodeHTML(age, highlightPath) {
+        const r_path = `<span class="${highlightPath === 'r-rated' ? 'highlight-code' : ''}"><span class="code-keyword">if</span> (age >= 18) {\n    printf("Allowed for R, PG-13, G");\n}</span>`;
+        const pg13_path = `<span class="${highlightPath === 'pg13-rated' ? 'highlight-code' : ''}"><span class="code-keyword">else if</span> (age >= 13) {\n    printf("Allowed for PG-13, G");\n}</span>`;
+        const g_path = `<span class="${highlightPath === 'g-rated' ? 'highlight-code' : ''}"><span class="code-keyword">else</span> {\n    printf("Allowed for G only");\n}</span>`;
+
+        return `
+<span class="code-keyword">int</span> age = ${age}; <span class="code-comment">// <-- ค่าที่คุณป้อน</span>
+
+${r_path}
+${pg13_path}
+${g_path}
+        `;
+    }
 });
 </script>
 
