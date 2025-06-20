@@ -160,6 +160,67 @@
                      <p class="mt-6 text-center text-lg text-slate-700 font-medium">เพียงเท่านี้ คุณก็ได้สร้างโปรแกรมที่ไม่ได้แค่โต้ตอบ แต่ยัง "คิด" และคำนวณให้คุณได้แล้ว!</p>
                 </div>
             </section>
+
+            <section id="c-conditionals" class="scroll-mt-16">
+                <div class="content-card">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">บทที่ 5: โปรแกรมผู้มีวิจารณญาณ (Conditionals)</h2>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        ถึงตอนนี้ โปรแกรมของเราทำงานเป็นเส้นตรงตั้งแต่ต้นจนจบ แต่ในโลกแห่งความเป็นจริง เราต้องตัดสินใจอยู่ตลอดเวลา "ถ้าฝนตก ให้กางร่ม แต่ถ้าไม่ ก็ไม่ต้อง" โปรแกรมคอมพิวเตอร์ก็เช่นกันครับ ในบทนี้ เราจะมาสอนให้โปรแกรมของเรามี "ทางแยก" และเลือกเดินไปในเส้นทางที่ถูกต้องได้
+                    </p>
+                    <h3 class="text-xl font-semibold mt-8 mb-3">คำถามประเภท ใช่/ไม่ใช่ (Boolean Expressions)</h3>
+                     <p class="text-slate-600 mb-4 leading-relaxed">
+                        หัวใจของการตัดสินใจคือการตั้ง "คำถาม" ที่มีคำตอบแค่ "จริง" (True) หรือ "เท็จ" (False) เท่านั้น ในทางคอมพิวเตอร์ เราเรียกตรรกะแบบนี้ว่า <strong class="keyword-glossary" data-term="Boolean" data-def="ตรรกะแบบบูลีน คือระบบคิดที่มีผลลัพธ์เพียง 2 อย่างคือ จริง (true) หรือ เท็จ (false) เป็นพื้นฐานของการตัดสินใจทั้งหมดในคอมพิวเตอร์">Boolean</strong> ครับ เช่น คำถาม "5 มากกว่า 3 หรือไม่?" คำตอบคือ "จริง" ส่วนคำถาม "10 เท่ากับ 1 หรือไม่?" คำตอบคือ "เท็จ"
+                    </p>
+                    <h3 class="text-xl font-semibold mt-8 mb-3">เครื่องมือสำหรับเปรียบเทียบ (Comparison Operators)</h3>
+                    <p class="text-slate-600 mb-4">
+                        เพื่อสร้างคำถามแบบ Boolean ในภาษา C เราจะใช้เครื่องหมายเหล่านี้ในการเปรียบเทียบค่าสองข้างครับ
+                    </p>
+                    <ul class="space-y-2 mb-4 list-disc list-inside">
+                        <li>`>` : มากกว่า</li>
+                        <li>`<` : น้อยกว่า</li>
+                        <li>`>=` : มากกว่าหรือเท่ากับ</li>
+                        <li>`<=` : น้อยกว่าหรือเท่ากับ</li>
+                        <li><strong class="keyword-glossary" data-term="==" data-def="เครื่องหมาย 'เท่ากับ' สำหรับการเปรียบเทียบค่าสองข้างว่าเหมือนกันหรือไม่ (ห้ามสับสนกับ = ตัวเดียวที่เป็นการกำหนดค่า)">`==`</strong> : เท่ากัน (สำคัญมาก: ใช้เครื่องหมายเท่ากับ 2 ตัวนะครับ!)</li>
+                        <li><strong class="keyword-glossary" data-term="!=" data-def="เครื่องหมาย 'ไม่เท่ากับ' สำหรับการเปรียบเทียบค่าสองข้างว่าแตกต่างกันหรือไม่">`!=`</strong> : ไม่เท่ากับ</li>
+                    </ul>
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-6">
+                        <p class="font-bold text-amber-800">ข้อควรระวังสุดคลาสสิก!</p>
+                        <p class="text-amber-700">`=` (ตัวเดียว) คือการ **กำหนดค่า** (Assignment) เช่น `x = 5;` คือ "เอา 5 ไปใส่ในกล่อง x"</p>
+                        <p class="text-amber-700">`==` (สองตัว) คือการ **เปรียบเทียบ** (Comparison) เช่น `x == 5;` คือ "ถามว่าค่าในกล่อง x เท่ากับ 5 หรือไม่?"</p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mt-8 mb-3">สร้างทางแยกด้วย `if-else`</h3>
+                    <p class="text-slate-600 mb-4">
+                        นี่คือโปรแกรมที่จะรับเลขมา 2 ตัว แล้วเปรียบเทียบกันโดยใช้โครงสร้าง <strong class="keyword-glossary" data-term="if-else" data-def="ชุดคำสั่งที่ใช้สร้างเงื่อนไข ถ้าเงื่อนไขใน if เป็นจริง จะทำคำสั่งในบล็อกของ if แต่ถ้าเป็นเท็จ จะไปตรวจสอบเงื่อนไขถัดไป (else if) หรือทำคำสั่งในบล็อกของ else แทน">`if-else`</strong> ครับ
+                    </p>
+                    <pre class="code-block"><code class="language-c"><span class="code-comment">// นำเข้าไลบรารีที่จำเป็น</span>
+<span class="keyword-glossary" data-term="#include" data-def="คำสั่ง 'พรีโปรเซสเซอร์' ใช้บอกคอมไพเลอร์ว่า 'ช่วยไปเอาโค้ดจากไฟล์อื่นมารวมกับไฟล์นี้ที'">#include</span> <span class="code-string">&lt;<span class="keyword-glossary" data-term="cs50.h" data-def="ไลบรารีพิเศษของ CS50 ที่มีฟังก์ชันอำนวยความสะดวก">cs50.h</span>&gt;</span>
+<span class="keyword-glossary" data-term="#include" data-def="คำสั่ง 'พรีโปรเซสเซอร์' ใช้บอกคอมไพเลอร์ว่า 'ช่วยไปเอาโค้ดจากไฟล์อื่นมารวมกับไฟล์นี้ที'">#include</span> <span class="code-string">&lt;<span class="keyword-glossary" data-term="stdio.h" data-def="ไลบรารีมาตรฐานสำหรับ Input/Output">stdio.h</span>&gt;</span>
+
+<span class="keyword-glossary" data-term="int" data-def="ชนิดข้อมูลเลขจำนวนเต็ม">int</span> <span class="keyword-glossary code-function" data-term="main" data-def="ฟังก์ชันหลัก จุดเริ่มต้นของโปรแกรม">main</span>(<span class="keyword-glossary" data-term="void" data-def="หมายความว่าฟังก์ชันนี้ไม่รับค่าใดๆ">void</span>)
+<span class="keyword-glossary" data-term="{ }">{</span>
+    <span class="code-comment">// รับค่า x และ y จากผู้ใช้</span>
+    <span class="keyword-glossary" data-term="int" data-def="ชนิดข้อมูลเลขจำนวนเต็ม">int</span> x = <span class="keyword-glossary code-function" data-term="get_int" data-def="ฟังก์ชันรับเลขจำนวนเต็มจากผู้ใช้">get_int</span>(<span class="code-string">"What's x? "</span>);
+    <span class="keyword-glossary" data-term="int" data-def="ชนิดข้อมูลเลขจำนวนเต็ม">int</span> y = <span class="keyword-glossary code-function" data-term="get_int" data-def="ฟังก์ชันรับเลขจำนวนเต็มจากผู้ใช้">get_int</span>(<span class="code-string">"What's y? "</span>);
+
+    <span class="code-comment">// เริ่มการตัดสินใจ</span>
+    <span class="keyword-glossary" data-term="if" data-def="คำสั่งเริ่มต้นเงื่อนไข 'ถ้า...' เพื่อตรวจสอบว่าสิ่งที่อยู่ในวงเล็บเป็นจริงหรือไม่">if</span> (x < y)
+    <span class="keyword-glossary" data-term="{ }">{</span>
+        <span class="keyword-glossary code-function" data-term="printf" data-def="ฟังก์ชันแสดงผลข้อความ">printf</span>(<span class="code-string">"x is less than y\n"</span>);
+    <span class="keyword-glossary" data-term="{ }">}</span>
+    <span class="keyword-glossary" data-term="else if" data-def="คำสั่งเงื่อนไข '...หรือถ้า...' เป็นทางเลือกที่สอง ถ้าเงื่อนไข if แรกไม่เป็นจริง">else if</span> (x > y)
+    <span class="keyword-glossary" data-term="{ }">{</span>
+        <span class="keyword-glossary code-function" data-term="printf" data-def="ฟังก์ชันแสดงผลข้อความ">printf</span>(<span class="code-string">"x is greater than y\n"</span>);
+    <span class="keyword-glossary" data-term="{ }">}</span>
+    <span class="keyword-glossary" data-term="else" data-def="คำสั่งที่จะทำงาน 'ในกรณีอื่นๆ' ที่เงื่อนไข if และ else if ข้างบนไม่เป็นจริงเลย">else</span>
+    <span class="keyword-glossary" data-term="{ }">{</span>
+        <span class="keyword-glossary code-function" data-term="printf" data-def="ฟังก์ชันแสดงผลข้อความ">printf</span>(<span class="code-string">"x is equal to y\n"</span>);
+    <span class="keyword-glossary" data-term="{ }">}</span>
+<span class="keyword-glossary" data-term="{ }">}</span></code></pre>
+                     <p class="mt-6 text-center text-lg text-slate-700 font-medium">สุดยอด! ตอนนี้โปรแกรมของคุณไม่ได้เป็นแค่เครื่องคิดเลขที่ซื่อบื้ออีกต่อไป แต่มันสามารถวิเคราะห์และให้คำตอบที่แตกต่างกันตามสถานการณ์ได้แล้ว</p>
+                </div>
+            </section>
+            
         </main>
     </div>
 
