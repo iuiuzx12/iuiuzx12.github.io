@@ -231,6 +231,59 @@
                      <p class="mt-6 text-center text-lg text-slate-700 font-medium">สุดยอด! ตอนนี้โปรแกรมของคุณไม่ได้เป็นแค่เครื่องคิดเลขที่ซื่อบื้ออีกต่อไป แต่มันสามารถวิเคราะห์และให้คำตอบที่แตกต่างกันตามสถานการณ์ได้แล้ว</p>
                 </div>
             </section>
+
+            <section id="c-loops" class="scroll-mt-16">
+                <div class="content-card">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">บทที่ 6: การทำงานซ้ำอย่างไม่รู้จักเหนื่อย (Loops)</h2>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        เราได้สอนให้โปรแกรมตัดสินใจเป็นแล้ว แต่งานที่คอมพิวเตอร์ทำได้ดีที่สุดคืองานซ้ำซากที่มนุษย์เราเบื่อที่จะทำ ถ้าคุณต้องตอกตะปู 100 ตัว คุณคงไม่อยากนับ 1, 2, 3... ไปเรื่อยๆ ใช่ไหมครับ? คุณแค่อยากจะสั่งว่า "ตอกตะปู 100 ตัว" แล้วก็ปล่อยให้เป็นหน้าที่ของเครื่องจักร ลูปในโปรแกรมก็ทำงานแบบนั้นแหละครับ
+                    </p>
+                    <h3 class="text-xl font-semibold mt-8 mb-3">ลูปแบบ `while`: ทำไปเรื่อยๆ จนกว่าเงื่อนไขจะไม่จริง</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        <strong class="keyword-glossary" data-term="while loop" data-def="ลูปที่ทำงานโดยตรวจสอบเงื่อนไขก่อน ถ้าเงื่อนไขเป็นจริง ก็จะทำงานในบล็อกของตัวเองไปเรื่อยๆ จนกว่าเงื่อนไขจะเป็นเท็จ">while loop</strong> เหมือนการถามคำถามง่ายๆ ว่า "ยังต้องทำอยู่ไหม?" ถ้าคำตอบคือ "ใช่" ก็ทำต่อไป แล้วค่อยกลับมาถามใหม่ เป็นลูปที่เหมาะกับงานที่เราไม่รู้จำนวนรอบที่แน่นอน แต่รู้ว่าต้องทำไปจนกว่าจะเกิดอะไรบางอย่างขึ้น
+                    </p>
+                     <div class="bg-red-50 border-l-4 border-red-400 p-4 my-6">
+                        <p class="font-bold text-red-800">คำเตือน: ลูปอนันต์ (Infinite Loop)</p>
+                        <p class="text-red-700">ข้อควรระวังของ `while` คือ ถ้าเงื่อนไขเป็นจริง "ตลอดไป" โปรแกรมของคุณก็จะทำงานในลูปนั้นไปตลอดกาลจนกว่าจะถูกบังคับปิด! เราจึงต้องมั่นใจว่ามีโค้ดที่ทำให้เงื่อนไขมีโอกาสเป็นเท็จได้อยู่ภายในลูปเสมอ</p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mt-8 mb-3">ลูปแบบ `for`: ลูปยอดนิยมสำหรับจำนวนรอบที่แน่นอน</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        <strong class="keyword-glossary" data-term="for loop" data-def="ลูปที่ถูกออกแบบมาให้ทำงานซ้ำตามจำนวนรอบที่กำหนดไว้ชัดเจน โดยรวมเอา 'จุดเริ่มต้น', 'เงื่อนไข' และ 'การเปลี่ยนแปลง' ไว้ในบรรทัดเดียว">for loop</strong> เป็นเครื่องมือที่ทรงพลังและถูกใช้งานบ่อยที่สุด มันถูกออกแบบมาเพื่อทำงานซ้ำในจำนวนรอบที่เรารู้อยู่แล้ว โดยมี 3 ส่วนประกอบสำคัญในวงเล็บ:
+                    </p>
+                    <ol class="space-y-2 mb-4 list-decimal list-inside">
+                        <li><strong>Initialization (จุดเริ่มต้น):</strong> สร้างตัวแปรนับรอบขึ้นมา (เช่น `int i = 0;`)</li>
+                        <li><strong>Condition (เงื่อนไข):</strong> ตรวจสอบเงื่อนไขก่อนเริ่มแต่ละรอบ (เช่น `i < 10;`)</li>
+                        <li><strong>Increment/Decrement (การเปลี่ยนแปลง):</strong> สิ่งที่จะทำหลังจบแต่ละรอบ (เช่น `i++;` คือการบวกค่า i ไป 1)</li>
+                    </ol>
+                    
+                    <div id="loops-playground" class="bg-blue-50 border border-blue-200 p-6 rounded-lg my-8">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">ห้องทดลองลูป: สั่งน้องหมาให้เห่า!</h3>
+                        <p class="text-slate-600 mb-4">ลองป้อนจำนวนครั้ง แล้วดูซิว่าลูปแบบ `for` และ `while` ทำงานเหมือนกันได้อย่างไร</p>
+                        <div class="flex items-center space-x-3 mb-4">
+                             <label for="bark-count" class="text-slate-700 font-semibold">จำนวนครั้งที่จะเห่า:</label>
+                             <input type="number" id="bark-count" class="w-24 border border-slate-300 rounded-md px-3 py-2 text-center" placeholder="เช่น 5" value="3">
+                             <button id="bark-btn" class="bg-blue-700 text-white font-bold px-5 py-2 rounded-md hover:bg-blue-800 transition-colors">เห่าเลย!</button>
+                        </div>
+
+                        <div id="loop-toggle-btns" class="mb-4">
+                            <button id="show-for-loop" class="playground-toggle-btn active">แสดงโค้ด for</button>
+                            <button id="show-while-loop" class="playground-toggle-btn">แสดงโค้ด while</button>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-800 mb-2">ผลลัพธ์:</h4>
+                                <div id="bark-result" class="p-4 rounded-md bg-white border border-slate-200 min-h-[100px] whitespace-pre-wrap"></div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-800 mb-2">เบื้องหลังการทำงาน (โค้ด C):</h4>
+                                <pre id="loop-code-reveal" class="code-block min-h-[100px]"></pre>
+                            </div>
+                        </div>
+                    </div>
+                     </div>
+            </section>
             
         </main>
     </div>
@@ -327,6 +380,82 @@ ${g_path}
         `;
     }
 });
+
+    const barkCountInput = document.getElementById('bark-count');
+    const barkBtn = document.getElementById('bark-btn');
+    const barkResult = document.getElementById('bark-result');
+    const loopCodeReveal = document.getElementById('loop-code-reveal');
+    const showForBtn = document.getElementById('show-for-loop');
+    const showWhileBtn = document.getElementById('show-while-loop');
+
+    let currentLoopType = 'for';
+
+    function executeBark() {
+        const count = parseInt(barkCountInput.value);
+
+        if (isNaN(count) || count < 0 || count > 100) { // Limit to 100 to prevent browser freezing
+            barkResult.textContent = 'กรุณาป้อนจำนวนครั้งเป็นตัวเลข 0-100 ครับ';
+            loopCodeReveal.textContent = '';
+            return;
+        }
+
+        // Generate visual result
+        let resultHTML = '';
+        for (let i = 0; i < count; i++) {
+            resultHTML += '🐶 Woof!\n';
+        }
+        barkResult.textContent = resultHTML;
+
+        // Generate code display
+        updateCodeDisplay();
+    }
+
+    function updateCodeDisplay() {
+        const count = parseInt(barkCountInput.value) || 0;
+        let codeHTML = '';
+        if (currentLoopType === 'for') {
+            codeHTML = generateForLoopCode(count);
+        } else {
+            codeHTML = generateWhileLoopCode(count);
+        }
+        loopCodeReveal.innerHTML = codeHTML;
+    }
+
+    function generateForLoopCode(count) {
+        return `<span class="code-comment">// ใช้ for loop เมื่อรู้จำนวนรอบที่แน่นอน</span>
+<span class="code-keyword">for</span> (<span class="code-keyword">int</span> i = 0; i < ${count}; i++)
+{
+    printf("🐶 Woof!\\n");
+}`;
+    }
+
+    function generateWhileLoopCode(count) {
+         return `<span class="code-comment">// ใช้ while loop ก็ได้ผลเหมือนกัน</span>
+<span class="code-keyword">int</span> i = 0;
+<span class="code-keyword">while</span> (i < ${count})
+{
+    printf("🐶 Woof!\\n");
+    i++; <span class="code-comment">// อย่าลืมบวกค่า i!</span>
+}`;
+    }
+
+    // Event Listeners
+    barkBtn.addEventListener('click', executeBark);
+    showForBtn.addEventListener('click', () => {
+        currentLoopType = 'for';
+        showForBtn.classList.add('active');
+        showWhileBtn.classList.remove('active');
+        updateCodeDisplay();
+    });
+    showWhileBtn.addEventListener('click', () => {
+        currentLoopType = 'while';
+        showWhileBtn.classList.add('active');
+        showForBtn.classList.remove('active');
+        updateCodeDisplay();
+    });
+
+    // Initial run
+    executeBark();
 </script>
 
 </body>
